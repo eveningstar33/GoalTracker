@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ErrorComponent } from './error/error.component';
+import { ListGoalsComponent } from './list-goals/list-goals.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'welcome/:name',
     component: WelcomeComponent
+  },
+  {
+    path: 'goals',
+    component: ListGoalsComponent
   },
   {
     path: '**',

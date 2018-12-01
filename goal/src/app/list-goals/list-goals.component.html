@@ -1,0 +1,15 @@
+<table border="1">
+  <caption>My Goal's</caption>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let goal of goals">
+      <td>{{goal.id}}</td>
+    <td>{{goal.description}}</td>
+    </tr>
+  </tbody>
+</table>
