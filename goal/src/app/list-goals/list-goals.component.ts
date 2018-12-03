@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { detachEmbeddedView } from '@angular/core/src/view';
 
 export class Goal {
   constructor(
