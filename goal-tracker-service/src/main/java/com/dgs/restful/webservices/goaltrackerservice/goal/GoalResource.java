@@ -22,6 +22,12 @@ public class GoalResource {
 		return goalService.findAll();
 	}
 	
+	@GetMapping("/users/{username}/goals/{id}")
+	public Goal getGoal(
+			@PathVariable String username, @PathVariable long id) {
+		return goalService.findById(id);
+	}
+	
 	@DeleteMapping("/users/{username}/goals/{id}")
 	public ResponseEntity<Void> deleteGoal(
 			@PathVariable String username, @PathVariable long id) {
