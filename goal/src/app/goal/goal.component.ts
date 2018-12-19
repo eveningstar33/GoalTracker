@@ -18,6 +18,7 @@ export class GoalComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    this.goal = new Goal(1, '', false, new Date());  // We need to do this otherwise goal will be undefined
     this.goalService.retrieveGoal('dgs', this.id).subscribe(
       data => this.goal = data
     );
