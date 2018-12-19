@@ -20,6 +20,8 @@ export class Goal {
 export class ListGoalsComponent implements OnInit {
 
   goals: Goal[]; 
+  message: String;
+
   // = [
   //   new Goal(1, 'Learn to Dance', false, new Date()),
   //   new Goal(2, 'Visit USA', false, new Date()),
@@ -42,10 +44,25 @@ export class ListGoalsComponent implements OnInit {
   constructor(private goalService: GoalDataService) { }
 
   ngOnInit() {
+    this.refreshGoals();
+  }
+
+  refreshGoals() {
     this.goalService.retrieveAllGoals('dgs').subscribe(
       response => {
         console.log(response);
         this.goals = response;
+      }
+    );
+  }
+
+  deleteGoal(id: number) {
+    console.log(`delete goal ${id}`);
+    this.goalService.deleteGoal('dgs', id).subscribe(
+      response => {
+        console.log(response);
+        this.message = `Delete of Goal ${id} Successful!`;
+        this.refreshGoals();
       }
     );
   }

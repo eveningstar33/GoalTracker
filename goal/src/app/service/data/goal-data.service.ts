@@ -12,4 +12,8 @@ export class GoalDataService {
   retrieveAllGoals(username) {
     return this.http.get<Goal[]>(`http://localhost:8080/users/${username}/goals`);
   }
+
+  deleteGoal(username, id) {
+    return this.http.delete<Goal>(`http://localhost:8080/users/${username}/goals/${id}`);
+  }
 }
