@@ -16,4 +16,8 @@ export class GoalDataService {
   deleteGoal(username, id) {
     return this.http.delete<Goal>(`http://localhost:8080/users/${username}/goals/${id}`);
   }
+
+  retrieveGoal(username, id) {
+    return this.http.get<Goal>(`http://localhost:8080/users/${username}/goals/${id}`);
+  }
 }

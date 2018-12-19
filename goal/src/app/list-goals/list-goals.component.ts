@@ -73,7 +73,6 @@ export class ListGoalsComponent implements OnInit {
   updateGoal(id) {
     console.log(`update goal ${id}`);
     this.router.navigate(['goals', id]);
-    console.log('aici');
   }
 
 }
