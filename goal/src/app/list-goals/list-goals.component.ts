@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GoalDataService } from '../service/data/goal-data.service';
+import { Router } from '@angular/router';
 
 export class Goal {
   constructor(
@@ -41,7 +42,9 @@ export class ListGoalsComponent implements OnInit {
   //   // }
   // ];
 
-  constructor(private goalService: GoalDataService) { }
+  constructor(
+    private goalService: GoalDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.refreshGoals();
@@ -65,6 +68,12 @@ export class ListGoalsComponent implements OnInit {
         this.refreshGoals();
       }
     );
+  }
+
+  updateGoal(id) {
+    console.log(`update goal ${id}`);
+    this.router.navigate(['goals', id]);
+    console.log('aici');
   }
 
 }

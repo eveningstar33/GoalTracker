@@ -6,6 +6,7 @@ import { ErrorComponent } from './error/error.component';
 import { ListGoalsComponent } from './list-goals/list-goals.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RouteGuardService } from './service/route-guard.service';
+import { GoalComponent } from './goal/goal.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
+    canActivate: [RouteGuardService] 
+  },
+  {
+    path: 'goals/:id',
+    component: GoalComponent,
     canActivate: [RouteGuardService] 
   },
   {

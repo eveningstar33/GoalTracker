@@ -12,6 +12,7 @@ import { ListGoalsComponent } from './list-goals/list-goals.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
+import { GoalComponent } from './goal/goal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LogoutComponent } from './logout/logout.component';
     ListGoalsComponent,
     MenuComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    GoalComponent
   ],
   imports: [
     BrowserModule,
