@@ -3,13 +3,25 @@
         <div><a href="http://www.usdgadget.com">USDGadget</a></div> 
 
         <ul class="navbar-nav"> 
-            <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/welcome/usdgadget" class="nav-link">Home</a></li>
-            <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/goals" class="nav-link">Goals</a></li> 
+            <li><a 
+                    *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" 
+                    routerLink="/welcome/dgs" 
+                    class="nav-link">Home</a></li>
+            <li><a 
+                    *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" 
+                    routerLink="/goals" 
+                    class="nav-link">Goals</a></li> 
         </ul>
 
         <ul class="navbar-nav navbar-collapse justify-content-end">
-            <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-            <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li> 
+            <li><a 
+                    *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" 
+                    routerLink="/login" 
+                    class="nav-link">Login</a></li>
+            <li><a 
+                    *ngIf="hardcodedAuthenticationService.isUserLoggedIn()"
+                    routerLink="/logout" 
+                    class="nav-link">Logout</a></li> 
         </ul>
     </nav>
 </header>
