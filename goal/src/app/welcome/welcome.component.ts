@@ -31,6 +31,9 @@ export class WelcomeComponent implements OnInit {
         // console.log(response);
         // console.log(response.message);
         this.welcomeMessageFromService = response.message;
+      },
+      error => {
+        this.welcomeMessageFromService = error.error.message;
       }
     );
 
