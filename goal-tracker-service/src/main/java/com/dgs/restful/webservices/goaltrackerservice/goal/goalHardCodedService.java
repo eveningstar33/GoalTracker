@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 public class goalHardCodedService {
@@ -23,4 +24,23 @@ public class goalHardCodedService {
 	public List<Goal> findAll() {
 		return goals;
 	}
+	
+	public Goal deleteById(long id) {
+		Goal goal = findById(id);
+		if (goal == null) return null;
+		if (goals.remove(goal)) {    // remove() uses the equals() method, so we need to define it in the Goal class
+			return goal;
+		}
+		return null;
+	}
+	
+	public Goal findById(long id) {
+		for (Goal goal : goals) {
+			if (goal.getId() == id) {
+				return goal;
+			}
+		}
+		return null;
+	}
+	
 }
