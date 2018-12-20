@@ -24,4 +24,8 @@ export class GoalDataService {
   updateGoal(username, id, goal) {
     return this.http.put(`http://localhost:8080/users/${username}/goals/${id}`, goal);
   }
+
+  createGoal(username, goal) {
+    return this.http.post(`http://localhost:8080/users/${username}/goals`, goal);
+  }
 }

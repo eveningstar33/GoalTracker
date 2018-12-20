@@ -19,19 +19,32 @@ export class GoalComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.goal = new Goal(1, '', false, new Date());  // We need to do this otherwise goal will be undefined
-    this.goalService.retrieveGoal('dgs', this.id).subscribe(
-      data => this.goal = data
-    );
+    this.goal = new Goal(this.id, '', false, new Date());  // We need to do this otherwise goal will be undefined
+    if (this.id != -1) {
+      this.goalService.retrieveGoal('dgs', this.id).subscribe(
+        data => this.goal = data
+      );
+    }
   }
 
   saveGoal() {
-    this.goalService.updateGoal('dgs', this.id, this.goal).subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(['goals']);
-      }
-    );
+    if (this.id == -1) {
+      // Create goal
+      this.goalService.createGoal('dgs', this.goal).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['goals']);
+        }
+      );
+    } else {
+      // Update goal
+      this.goalService.updateGoal('dgs', this.id, this.goal).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['goals']);
+        }
+      );
+    }
   }
 
 }

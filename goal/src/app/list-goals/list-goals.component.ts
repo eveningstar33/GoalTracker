@@ -75,4 +75,8 @@ export class ListGoalsComponent implements OnInit {
     this.router.navigate(['goals', id]);
   }
 
+  addGoal() {
+    this.router.navigate(['goals', -1]);
+  }
+
 }
