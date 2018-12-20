@@ -25,6 +25,17 @@ public class goalHardCodedService {
 		return goals;
 	}
 	
+	public Goal save(Goal goal) {
+		if (goal.getId() == -1) {
+			goal.setId(++idCounter);
+			goals.add(goal); 
+		} else { 
+			deleteById(goal.getId());
+			goals.add(goal);
+		}
+		return goal;
+	}
+	
 	public Goal deleteById(long id) {
 		Goal goal = findById(id);
 		if (goal == null) return null;
