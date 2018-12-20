@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 export class HelloWorldBean {
   constructor(public message: string) { }
@@ -18,7 +18,25 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldBeanServiceWithPathVariable(name) {
-    return this.http.get<HelloWorldBean>(`http://localhost:8080//hello-world/path-variable/${name}`);
+    let basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+
+    // Create a header
+    let headers = new HttpHeaders({
+      Authorization: basicAuthHeaderString
+    });
+    return this.http.get<HelloWorldBean>(
+      `http://localhost:8080//hello-world/path-variable/${name}`,
+      {headers});  // This object is the same with this {headers: headers}
+  }
+
+  createBasicAuthenticationHttpHeader() {
+    let username = 'dgs';
+    let password = 'test';
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    // You can see with Postman that it looks like this string "Basic ZGdzOnRlc3Q=" - it is some kind of
+    // a byte 64 representation, of a combination of username and password separated by ":", appended with 
+    // a string called "Basic". We're using window.btoe to encode the string in a base 64 format. 
+    return basicAuthHeaderString;
   }
 
 }
