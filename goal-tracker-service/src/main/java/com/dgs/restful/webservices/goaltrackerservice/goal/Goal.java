@@ -9,6 +9,10 @@ public class Goal {
 	private String description;
 	private Date targetDate;
 	private boolean isDone;
+	
+	public Goal() {
+		
+	}
 
 	public Goal(Long id, String username, String description, Date targetDate, boolean isDone) {
 		this.id = id;
