@@ -20,4 +20,8 @@ export class GoalDataService {
   retrieveGoal(username, id) {
     return this.http.get<Goal>(`http://localhost:8080/users/${username}/goals/${id}`);
   }
+
+  updateGoal(username, id, goal) {
+    return this.http.put(`http://localhost:8080/users/${username}/goals/${id}`, goal);
+  }
 }
