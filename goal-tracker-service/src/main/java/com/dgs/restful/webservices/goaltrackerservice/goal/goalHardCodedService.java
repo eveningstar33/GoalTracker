@@ -26,11 +26,10 @@ public class goalHardCodedService {
 	}
 	
 	public Goal save(Goal goal) {
-		if (goal.getId() == null) {
+		if (goal.getId() == -1 || goal.getId() == 0) {
 			goal.setId(++idCounter);
 			goals.add(goal); 
 		} else { 
-			System.out.println("The goal is " + goal);
 			deleteById(goal.getId());
 			goals.add(goal);
 		}
