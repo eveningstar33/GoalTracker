@@ -28,4 +28,7 @@ export class GoalDataService {
   createGoal(username, goal) {
     return this.http.post(`http://localhost:8080/users/${username}/goals`, goal);
   }
+
+  // We'll not use the same thing like in the welcome-data.service.ts. Now we'll use http interceptors
+  // that will enable us to add a specific request header to every request. 
 }
