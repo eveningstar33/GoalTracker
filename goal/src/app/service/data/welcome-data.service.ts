@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { API_URL } from 'src/app/app.constants';
 
 export class HelloWorldBean {
   constructor(public message: string) { }
@@ -13,7 +14,7 @@ export class WelcomeDataService {
   constructor(private http: HttpClient) { }  // Also we need to add HttpClientModule in the app.module
 
   executeHelloWorldBeanService() {
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+    return this.http.get<HelloWorldBean>(`${API_URL}/hello-world-bean`);
     // console.log("Execute Hello World Bean Service");
   }
 
@@ -42,7 +43,7 @@ export class WelcomeDataService {
 
   // We disable the above code because we'll use interceptors
   executeHelloWorldBeanServiceWithPathVariable(name) {
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`);
+    return this.http.get<HelloWorldBean>(`${API_URL}/hello-world/path-variable/${name}`);
   }
 
 }
