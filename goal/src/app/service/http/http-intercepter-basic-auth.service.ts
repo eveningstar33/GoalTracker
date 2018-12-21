@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { BasicAuthenticationService } from '../basic-authentication.service';
 
 
 @Injectable({
@@ -7,7 +8,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 })
 export class HttpIntercepterBasicAuthService implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private basicAuthenticationService: BasicAuthenticationService) { }
  
   // So HttpIntercepterBasicAuthService is implementing the HttpInterceptor. 
   // In this HttpInterceptor we are adding the basic authentication header on top of the original
@@ -20,15 +21,20 @@ export class HttpIntercepterBasicAuthService implements HttpInterceptor {
   // We're intercepting the request, adding the authorization header, and we're sending it to the 
   // next http handler. 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    let username = 'dgs';
-    let password = 'test';
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    // let username = 'dgs';
+    // let password = 'test';
+    // let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    let basicAuthHeaderString = this.basicAuthenticationService.getAuthenticatedToken();
+    let username = this.basicAuthenticationService.getAuthenticatedUser();
 
-    request = request.clone({
-      setHeaders: {
-        Authorization: basicAuthHeaderString
-      }
-    });
+    if (basicAuthHeaderString && username) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: basicAuthHeaderString
+        }
+      });
+    }
+
     return next.handle(request);
   }
 }

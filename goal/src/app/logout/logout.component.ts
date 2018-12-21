@@ -8,11 +8,11 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private hardcodedAuthenticationService: HardcodedAuthenticationService) {
+  constructor(private basicAuthenticationService: BasicAuthenticationService) {
    }
 
   ngOnInit() {
-    this.hardcodedAuthenticationService.logout();
+    this.basicAuthenticationService.logout();
   }
 
 }

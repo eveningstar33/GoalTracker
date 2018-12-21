@@ -22,6 +22,7 @@ export class BasicAuthenticationService {
                 map(
                     data => {
                         sessionStorage.setItem('authenticatedUser', username);
+                        sessionStorage.setItem('token', basicAuthHeaderString);
                         return data;
                     }
                 )
@@ -29,6 +30,20 @@ export class BasicAuthenticationService {
 
         // If there is a valid response then set something into session and return the response back 
         // so that whoever is subscribing to it will get the data. 
+    }
+
+    getAuthenticatedUser() {
+        return sessionStorage.getItem('authenticatedUser');
+    }
+
+    getAuthenticatedToken() {
+        if (this.getAuthenticatedUser())
+            return sessionStorage.getItem('token');
+    }
+
+    logout() {
+        sessionStorage.removeItem('authenticatedUser');
+        sessionStorage.removeItem('token');
     }
 }
 
