@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.basic.auth;
+package com.dgs.restful.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
