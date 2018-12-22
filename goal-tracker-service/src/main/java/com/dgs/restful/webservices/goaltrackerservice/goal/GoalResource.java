@@ -64,7 +64,7 @@ public class GoalResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(createdGoal.getId()).toUri(); 
 		
-		// Return the location
+		// Return the location:
 		return ResponseEntity.created(uri).build();
 	}
 	

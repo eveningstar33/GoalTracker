@@ -5,4 +5,4 @@ insert into goal(id, username, description, target_date, is_done)
 values(1002, 'dgs', 'Learn to Play Piano', sysdate(), false);
 
 insert into goal(id, username, description, target_date, is_done) 
-values(1003, 'dgs', 'Learn German', sysdate(), false);
+values(1003, 'dgs', 'Learn French', sysdate(), false);

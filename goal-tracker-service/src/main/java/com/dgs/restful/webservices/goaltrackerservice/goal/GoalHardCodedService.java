@@ -14,7 +14,7 @@ public class GoalHardCodedService {
 	private static List<Goal> goals = new ArrayList<>();   
 	private static long idCounter = 0;
 	
-	// Create a static initializer block
+	// Create a static initializer block:
 	static {
 		goals.add(new Goal(++idCounter, "dgs", "Learn to Dance", new Date(), false));
 		goals.add(new Goal(++idCounter, "dgs", "Learn French", new Date(), false));

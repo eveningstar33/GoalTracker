@@ -11,7 +11,7 @@ public class Goal {
 
 	// Id field ideally should be a wrapper class, it's not suggested to have a primitive because typically null indicates
 	// that an entity is not yet stored to the database and when you use that entity and save it to the database it means
-	// it has to be inserted.
+	// it has to be inserted
 	
 	@Id
 	@GeneratedValue
