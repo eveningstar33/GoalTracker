@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class GoalResource {
 	
 	@Autowired
-	private goalHardCodedService goalService;
+	private GoalHardCodedService goalService;
 
 	@GetMapping("/users/{username}/goals")
 	public List<Goal> getAllGoals(@PathVariable String username) {

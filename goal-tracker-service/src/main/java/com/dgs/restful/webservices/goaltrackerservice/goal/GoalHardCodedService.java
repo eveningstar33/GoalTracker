@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
-public class goalHardCodedService {
+public class GoalHardCodedService {
 
 	// This will act as a database
 	private static List<Goal> goals = new ArrayList<>();   
