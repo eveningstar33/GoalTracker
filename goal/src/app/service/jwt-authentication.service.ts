@@ -12,7 +12,6 @@ export class JWTAuthenticationService {
     constructor(private http: HttpClient) { }
 
     executeJWTAuthenticationService(username, password) {
-        console.log('here 2');
         return this.http.post<any>(
             `${API_URL}/authenticate`, 
             {

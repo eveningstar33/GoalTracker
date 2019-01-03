@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Goal } from 'src/app/list-goals/list-goals.component';
-import { GOAL_JPA_API_URL } from 'src/app/app.constants';
+import { GOAL_JPA_API_URL, API_URL } from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ export class GoalDataService {
   constructor(private http: HttpClient) { }
 
   retrieveAllGoals(username) {
+    console.log(username);
     return this.http.get<Goal[]>(`${GOAL_JPA_API_URL}/users/${username}/goals`);
   }
 

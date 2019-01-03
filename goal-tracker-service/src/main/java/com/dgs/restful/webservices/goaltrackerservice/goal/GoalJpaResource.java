@@ -16,19 +16,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.dgs.restful.webservices.goaltrackerservice.user.MyUserDetailsService;
+import com.dgs.restful.webservices.goaltrackerservice.user.User;
+import com.dgs.restful.webservices.goaltrackerservice.user.UserJpaRepository;
+
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class GoalJpaResource {
 	
-	@Autowired
-	private GoalHardCodedService goalService;
+	private Long userId;
 	
 	@Autowired
 	private GoalJpaRepository goalJpaRepository;
+	
+	@Autowired
+	private UserJpaRepository userJpaRepository;
 
 	@GetMapping("/jpa/users/{username}/goals")
 	public List<Goal> getAllGoals(@PathVariable String username) {
-		return goalJpaRepository.findByUsername(username); 
+		System.out.println("Username is: " + MyUserDetailsService.userName);
+		userId = getUserIdFromUsername(username);
+		return goalJpaRepository.findByUserId(userId); 
 	}
 	
 	@GetMapping("/jpa/users/{username}/goals/{id}")
@@ -58,7 +66,7 @@ public class GoalJpaResource {
 	@PostMapping("/jpa/users/{username}/goals")
 	public ResponseEntity<Void> createGoal(@PathVariable String username, @RequestBody Goal goal) {
 		
-		goal.setUsername(username); 
+		goal.setUserId(userId); 
 		Goal createdGoal = goalJpaRepository.save(goal); 
 		
 		// We're taking the current request path and appending "/id"
@@ -67,6 +75,12 @@ public class GoalJpaResource {
 		
 		// Return the location:
 		return ResponseEntity.created(uri).build();
+	}
+	
+	public Long getUserIdFromUsername(String username) {
+		User user = userJpaRepository.findByUsername(username);
+		userId = user.getId(); 
+		return userId;
 	}
 	
 }

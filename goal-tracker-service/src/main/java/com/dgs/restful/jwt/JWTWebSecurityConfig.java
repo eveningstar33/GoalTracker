@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt;
+package com.dgs.restful.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

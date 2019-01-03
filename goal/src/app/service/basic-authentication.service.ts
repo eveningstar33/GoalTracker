@@ -16,7 +16,6 @@ export class BasicAuthenticationService {
         let headers = new HttpHeaders({
             Authorization: basicAuthHeaderString
         });
-
         return this.http.get<AuthenticationBean>(
             `${API_URL}/basicauth`,
             {headers}).pipe(

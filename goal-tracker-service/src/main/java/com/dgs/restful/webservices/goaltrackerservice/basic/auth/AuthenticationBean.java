@@ -1,4 +1,4 @@
-package com.dgs.restful.basic.auth;
+package com.dgs.restful.webservices.goaltrackerservice.basic.auth;
 
 public class AuthenticationBean {
 	

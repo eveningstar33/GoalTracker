@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -14,10 +15,10 @@ public class Goal {
 	// it has to be inserted
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String username;
+	private Long userId;
 	private String description;
 	private Date targetDate;
 	private boolean isDone;
@@ -26,9 +27,9 @@ public class Goal {
 		
 	}
 
-	public Goal(Long id, String username, String description, Date targetDate, boolean isDone) {
+	public Goal(Long id, Long userId, String description, Date targetDate, boolean isDone) {
 		this.id = id;
-		this.username = username;
+		this.userId = userId;
 		this.description = description;
 		this.targetDate = targetDate;
 		this.isDone = isDone;
@@ -42,12 +43,12 @@ public class Goal {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getDescription() {
@@ -82,7 +83,7 @@ public class Goal {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isDone ? 1231 : 1237);
 		result = prime * result + ((targetDate == null) ? 0 : targetDate.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -112,10 +113,10 @@ public class Goal {
 				return false;
 		} else if (!targetDate.equals(other.targetDate))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
 	}

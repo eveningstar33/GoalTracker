@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt;
+package com.dgs.restful.jwt;
 
 import java.io.IOException;
 
@@ -43,6 +43,7 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
 
         String username = null;
         String jwtToken = null;
+
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -55,10 +56,12 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
         } else {
             logger.warn("JWT_TOKEN_DOES_NOT_START_WITH_BEARER_STRING");
         }
-
+        
+        System.out.println("Here 1"); 
+        
         logger.debug("JWT_TOKEN_USERNAME_VALUE '{}'", username);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
+        	System.out.println("Here 2"); 
             UserDetails userDetails = this.jwtInMemoryUserDetailsService.loadUserByUsername(username);
 
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {

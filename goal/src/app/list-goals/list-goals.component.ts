@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoalDataService } from '../service/data/goal-data.service';
 import { Router } from '@angular/router';
+import { AUTHENTICATED_USER } from '../app.constants';
 
 export class Goal {
   constructor(
@@ -51,7 +52,7 @@ export class ListGoalsComponent implements OnInit {
   }
 
   refreshGoals() {
-    this.goalService.retrieveAllGoals('dgs').subscribe(
+    this.goalService.retrieveAllGoals(sessionStorage.getItem(AUTHENTICATED_USER)).subscribe(
       response => {
         console.log(response);
         this.goals = response;
@@ -61,7 +62,7 @@ export class ListGoalsComponent implements OnInit {
 
   deleteGoal(id: number) {
     console.log(`delete goal ${id}`);
-    this.goalService.deleteGoal('dgs', id).subscribe(
+    this.goalService.deleteGoal(sessionStorage.getItem(AUTHENTICATED_USER), id).subscribe(
       response => {
         console.log(response);
         this.message = `Delete of Goal ${id} Successful!`;

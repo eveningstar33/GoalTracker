@@ -16,9 +16,9 @@ public class GoalHardCodedService {
 	
 	// Create a static initializer block:
 	static {
-		goals.add(new Goal(++idCounter, "dgs", "Learn to Dance", new Date(), false));
-		goals.add(new Goal(++idCounter, "dgs", "Learn French", new Date(), false));
-		goals.add(new Goal(++idCounter, "dgs", "Learn to Play Piano", new Date(), false));
+		goals.add(new Goal(++idCounter, 5L, "Learn to Dance", new Date(), false));
+		goals.add(new Goal(++idCounter, 5L, "Learn French", new Date(), false));
+		goals.add(new Goal(++idCounter, 5L, "Learn to Play Piano", new Date(), false));
 	}
 	
 	public List<Goal> findAll() {

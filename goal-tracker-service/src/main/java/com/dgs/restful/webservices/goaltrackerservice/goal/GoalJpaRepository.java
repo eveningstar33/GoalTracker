@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GoalJpaRepository extends JpaRepository<Goal, Long> {
 
-	List<Goal> findByUsername(String username);
+	List<Goal> findByUserId(Long userId);
 }

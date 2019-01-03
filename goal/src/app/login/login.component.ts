@@ -11,7 +11,7 @@ import { JWTAuthenticationService } from '../service/jwt-authentication.service'
 })
 export class LoginComponent implements OnInit {
 
-  username = 'dgs';
+  username = '';
   password = '';
   errorMessage = 'Invalid Credentials';
   invalidLogin = false;
@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
   // We disable basic authentication and we'll use JWT authentication
 
   handleJWTAuthLogin() {
-    console.log('here 1');
     this.jwtAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
         data => {

@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt.resource;
+package com.dgs.restful.jwt.resource;
 
 import java.io.Serializable;
 

@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { GoalComponent } from './goal/goal.component';
 import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    GoalComponent
+    GoalComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

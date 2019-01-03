@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt;
+package com.dgs.restful.jwt;
 
 import java.io.Serializable;
 import java.util.Date;

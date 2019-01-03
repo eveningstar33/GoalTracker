@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt;
+package com.dgs.restful.jwt;
 
 import java.util.ArrayList;
 import java.util.List;

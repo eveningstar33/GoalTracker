@@ -1,4 +1,4 @@
-package com.dgs.restful.webservices.goaltrackerservice.jwt.resource;
+package com.dgs.restful.jwt.resource;
 
 import java.util.Objects;
 
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dgs.restful.webservices.goaltrackerservice.jwt.JwtTokenUtil;
-import com.dgs.restful.webservices.goaltrackerservice.jwt.JwtUserDetails;
+import com.dgs.restful.jwt.JwtTokenUtil;
+import com.dgs.restful.jwt.JwtUserDetails;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
