@@ -27,7 +27,6 @@ public class SpringSecurityConfigurationBasicAuth extends WebSecurityConfigurerA
 	
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
-		System.out.println("Here 223"); 
 	    DaoAuthenticationProvider authProvider
 	      = new DaoAuthenticationProvider();
 	    authProvider.setUserDetailsService(userDetailsService);

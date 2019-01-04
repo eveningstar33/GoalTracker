@@ -1,6 +1,7 @@
 package com.dgs.restful.webservices.goaltrackerservice.goal;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.dgs.restful.webservices.goaltrackerservice.user.MyUserDetailsService;
 import com.dgs.restful.webservices.goaltrackerservice.user.User;
 import com.dgs.restful.webservices.goaltrackerservice.user.UserJpaRepository;
 
@@ -33,10 +33,13 @@ public class GoalJpaResource {
 	private UserJpaRepository userJpaRepository;
 
 	@GetMapping("/jpa/users/{username}/goals")
-	public List<Goal> getAllGoals(@PathVariable String username) {
-		System.out.println("Username is: " + MyUserDetailsService.userName);
-		userId = getUserIdFromUsername(username);
-		return goalJpaRepository.findByUserId(userId); 
+	public List<Goal> getAllGoals(@PathVariable String username, Principal principal) {
+		if (username.equals(principal.getName())) {
+		    userId = getUserIdFromUsername(username);
+		} else {
+			throw new UserNotAcceptableException("username-" + username);
+		}
+	    return goalJpaRepository.findByUserId(userId);
 	}
 	
 	@GetMapping("/jpa/users/{username}/goals/{id}")
@@ -78,9 +81,9 @@ public class GoalJpaResource {
 	}
 	
 	public Long getUserIdFromUsername(String username) {
-		User user = userJpaRepository.findByUsername(username);
-		userId = user.getId(); 
-		return userId;
+	    User user = userJpaRepository.findByUsername(username);
+	    userId = user.getId(); 
+	    return userId;
 	}
 	
 }

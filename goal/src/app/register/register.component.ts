@@ -35,12 +35,23 @@ export class RegisterComponent implements OnInit {
       this.invalidRegister = true;
       this.errorMessage = 'The passwords do not match!';
     } else {
-      this.invalidRegister = false;
       this.user = new User(this.userName, this.emailAddress, this.pass1);
       console.log(this.user);
       this.userDataService.addUser(this.user).subscribe(
         data => {
           console.log(data);
+        }, 
+        error => {
+          if (error.error.email === "duplicated") {
+            this.invalidRegister = true;
+            this.errorMessage = 'The email address you have used is already registered!';
+          } else if (error.error.username === "duplicated") {
+            this.invalidRegister = true;
+            this.errorMessage = 'The username is not available!';
+          }
+        },
+        () => {
+          this.invalidRegister = false;
           this.router.navigate(['login']);
         })
     }
