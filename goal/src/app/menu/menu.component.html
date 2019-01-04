@@ -16,6 +16,10 @@
         <ul class="navbar-nav navbar-collapse justify-content-end">
             <li><a 
                     *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" 
+                    routerLink="/register" 
+                    class="nav-link">Register</a></li>
+            <li><a 
+                    *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" 
                     routerLink="/login" 
                     class="nav-link">Login</a></li>
             <li><a 

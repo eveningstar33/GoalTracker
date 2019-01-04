@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Goal } from 'src/app/list-goals/list-goals.component';
 import { GOAL_JPA_API_URL, API_URL } from 'src/app/app.constants';
+import { Goal } from 'src/app/model/goal.model';
 
 @Injectable({
   providedIn: 'root'

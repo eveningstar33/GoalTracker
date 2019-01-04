@@ -2,17 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GoalDataService } from '../service/data/goal-data.service';
 import { Router } from '@angular/router';
 import { AUTHENTICATED_USER } from '../app.constants';
-
-export class Goal {
-  constructor(
-    public id: number,
-    public description: string,
-    public done: boolean,
-    public targetDate: Date
-  ) {
-
-  }
-}
+import { Goal } from '../model/goal.model';
 
 @Component({
   selector: 'app-list-goals',

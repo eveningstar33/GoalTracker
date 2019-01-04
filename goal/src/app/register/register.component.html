@@ -1,14 +1,74 @@
 <h1>Register</h1>
-
-<div class="container">
-    <div class="alert alert-warning" *ngIf='invalidLogin'>{{ errorMessage }}</div>
-
-    <div>
-        User Name: <input type="text" name="username" [(ngModel)]="username" >
-        Password: <input type="password" name="password" [(ngModel)]="password">
-
-        <!-- <button (click)=handleLogin() class="btn btn-success">Login</button> -->
-        <!-- <button (click)="handleBasicAuthLogin()" class="btn btn-success">Login</button> -->
-        <button (click)="handleJWTAuthLogin()" class="btn btn-success">Login</button>
-    </div>
-</div>  
+        <div class="alert alert-warning" *ngIf="invalidRegister">{{ errorMessage }}</div>
+        <form (ngSubmit)="onSignup()" #f="ngForm">
+            <div class="form-group row">
+                <label for="username" class="col-2 col-form-label">Username</label>
+                <div class="col-6">
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        ngModel 
+                        class="form-control" 
+                        required
+                        #username="ngModel"
+                        [(ngModel)]="userName">
+                    <span 
+                        class="help-block text-danger" 
+                        *ngIf="!username.valid && username.touched">The username field is required!</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-2 col-form-label">Email</label>
+                <div class="col-6">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        ngModel 
+                        class="form-control" 
+                        required
+                        email
+                        #email="ngModel"
+                        [(ngModel)]="emailAddress">
+                    <span 
+                        class="help-block text-danger" 
+                        *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-2 col-form-label">Password</label>
+                <div class="col-6">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        ngModel 
+                        class="form-control" 
+                        required
+                        #password="ngModel"
+                        [(ngModel)]="pass1">
+                    <span 
+                        class="help-block text-danger" 
+                        *ngIf="!password.valid && password.touched">The password field is required!</span>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="pass" class="col-2 col-form-label">Confirm Password</label>
+                    <div class="col-6">
+                        <input 
+                            type="password" 
+                            id="pass" 
+                            name="pass" 
+                            ngModel 
+                            class="form-control" 
+                            required
+                            #pass="ngModel"
+                            [(ngModel)]="pass2">
+                        <span 
+                            class="help-block text-danger" 
+                            *ngIf="!pass.valid && pass.touched">Please confirm your password!</span>
+                    </div>
+                </div>
+            <button class="btn btn-primary" type="submit">Sign Up</button>
+        </form>
