@@ -2,10 +2,15 @@ package com.dgs.restful.webservices.goaltrackerservice.goal;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.dgs.restful.webservices.goaltrackerservice.user.User;
 
 @Entity
 public class Goal {
@@ -23,9 +28,26 @@ public class Goal {
 	private Date targetDate;
 	private boolean isDone;
 	
+	/*
+	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, 
+			CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name="user_id")
+	private User user;
+	*/
+	
 	public Goal() {
 		
 	}
+
+	/*
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	*/
 
 	public Goal(Long id, Long userId, String description, Date targetDate, boolean isDone) {
 		this.id = id;

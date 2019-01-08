@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
 import { JWTAuthenticationService } from '../service/jwt-authentication.service';
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   errorMessage = 'Invalid Credentials';
+  infoMessage = '';
   invalidLogin = false;
 
   // Router
@@ -22,9 +23,17 @@ export class LoginComponent implements OnInit {
     private router: Router, 
     private hardcodedAuthenticationService: HardcodedAuthenticationService,
     private basicAuthenticationService: BasicAuthenticationService,
-    private jwtAuthenticationService: JWTAuthenticationService) { }
+    private jwtAuthenticationService: JWTAuthenticationService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(
+      params => {
+        if (params.registered !== undefined && params.registered === 'true') {
+          this.infoMessage = 'Registration Successful! Please login!';
+        }
+      }
+    );
   }
 
   handleLogin() {

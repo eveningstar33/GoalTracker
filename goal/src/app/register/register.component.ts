@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         },
         () => {
           this.invalidRegister = false;
-          this.router.navigate(['login']);
+          this.router.navigate(['login'], { queryParams: { registered: 'true' } });
         })
     }
   }

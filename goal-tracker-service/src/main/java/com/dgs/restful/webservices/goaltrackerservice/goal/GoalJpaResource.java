@@ -34,44 +34,66 @@ public class GoalJpaResource {
 
 	@GetMapping("/jpa/users/{username}/goals")
 	public List<Goal> getAllGoals(@PathVariable String username, Principal principal) {
-		if (username.equals(principal.getName())) {
-		    userId = getUserIdFromUsername(username);
-		} else {
-			throw new UserNotAcceptableException("username-" + username);
-		}
+		userId = getUserIdFromUsername(username, principal);
 	    return goalJpaRepository.findByUserId(userId);
 	}
 	
 	@GetMapping("/jpa/users/{username}/goals/{id}")
 	public Goal getGoal(
-			@PathVariable String username, @PathVariable long id) {
-		return goalJpaRepository.findById(id).get();
+			@PathVariable String username, @PathVariable long id, Principal principal) {
+		userId = getUserIdFromUsername(username, principal);
+		if (goalJpaRepository.findById(id).get().getUserId() == userId) {
+			return goalJpaRepository.findById(id).get();
+		} else {
+			throw new UserNotAcceptableException("Bad goal id");
+		}
 	}
 	
 	@DeleteMapping("/jpa/users/{username}/goals/{id}")
 	public ResponseEntity<Void> deleteGoal(
-			@PathVariable String username, @PathVariable long id) {
-		
-		goalJpaRepository.deleteById(id);
-		
-		return ResponseEntity.noContent().build(); 
+			@PathVariable String username, @PathVariable long id, Principal principal) {
+		userId = getUserIdFromUsername(username, principal);
+		if (goalJpaRepository.findById(id).get().getUserId() == userId) {
+			goalJpaRepository.deleteById(id);
+			return ResponseEntity.noContent().build();
+		} else {
+			throw new UserNotAcceptableException("Bad goal id");
+		}
 	}
 	
 	@PutMapping("/jpa/users/{username}/goals/{id}")
 	public ResponseEntity<Goal> updateGoal(
-			@PathVariable String username, @PathVariable long id, @RequestBody Goal goal) {
+			@PathVariable String username, @PathVariable long id, @RequestBody Goal goal, Principal principal) {
 		
 		// If you use @RequestBody you need to add a default constructor
-		Goal updatedGoal = goalJpaRepository.save(goal);
-		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+		userId = getUserIdFromUsername(username, principal);
+		Goal dbGoal = goalJpaRepository.findById(id).get();
+		
+		if (dbGoal.getUserId() == goal.getUserId() && userId == goal.getUserId()) { 
+			Goal updatedGoal = goalJpaRepository.save(goal);
+			return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+		} else {
+			throw new UserNotAcceptableException("Bad goal id"); 
+		}
+
 	}
 	
 	@PostMapping("/jpa/users/{username}/goals")
-	public ResponseEntity<Void> createGoal(@PathVariable String username, @RequestBody Goal goal) {
-		
+	public ResponseEntity<Void> createGoal(
+			@PathVariable String username, @RequestBody Goal goal, Principal principal) {
+		System.out.println("goal id = " + goal.getId()); 
+		System.out.println("goal user id = " + goal.getUserId()); 
+		userId = getUserIdFromUsername(username, principal);
+		if ((goal.getId() != null)) {
+			if (goalJpaRepository.findById(goal.getId()).isPresent()) { 
+				if (goalJpaRepository.findById(goal.getId()).get().getUserId() != userId) {
+					throw new UserNotAcceptableException("Bad goal id");
+				} 
+			}
+		}
 		goal.setUserId(userId); 
 		Goal createdGoal = goalJpaRepository.save(goal); 
-		
+
 		// We're taking the current request path and appending "/id"
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(createdGoal.getId()).toUri(); 
@@ -80,10 +102,14 @@ public class GoalJpaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	public Long getUserIdFromUsername(String username) {
-	    User user = userJpaRepository.findByUsername(username);
-	    userId = user.getId(); 
-	    return userId;
+	public Long getUserIdFromUsername(String username, Principal principal) {
+		if (username.equals(principal.getName())) {
+		    User user = userJpaRepository.findByUsername(username);
+		    userId = user.getId(); 
+		    return userId;
+		} else {
+			throw new UserNotAcceptableException("Bad username-" + username);
+		}
 	}
 	
 }
