@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.dgs.restful.webservices.goaltrackerservice.goal.Goal;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -21,7 +22,7 @@ public class User {
 	private String email;
 	private String password;
 	
-	/*
+	@JsonIgnore
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	private List<Goal> goals;
 	
@@ -32,7 +33,6 @@ public class User {
 	public void setGoals(List<Goal> goals) {
 		this.goals = goals;
 	}
-	*/
 
 	public User() {
 		

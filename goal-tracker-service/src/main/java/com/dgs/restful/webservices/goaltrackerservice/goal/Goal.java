@@ -23,23 +23,20 @@ public class Goal {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long userId;
+//	private Long userId;
 	private String description;
 	private Date targetDate;
 	private boolean isDone;
 	
-	/*
 	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, 
 			CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name="user_id")
 	private User user;
-	*/
 	
 	public Goal() {
 		
 	}
 
-	/*
 	public User getUser() {
 		return user;
 	}
@@ -47,11 +44,10 @@ public class Goal {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	*/
 
-	public Goal(Long id, Long userId, String description, Date targetDate, boolean isDone) {
+	public Goal(Long id, String description, Date targetDate, boolean isDone) {
 		this.id = id;
-		this.userId = userId;
+//		this.userId = userId;
 		this.description = description;
 		this.targetDate = targetDate;
 		this.isDone = isDone;
@@ -65,13 +61,13 @@ public class Goal {
 		this.id = id;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+//	public Long getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(Long userId) {
+//		this.userId = userId;
+//	}
 
 	public String getDescription() {
 		return description;
@@ -97,50 +93,50 @@ public class Goal {
 		this.isDone = isDone;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + (isDone ? 1231 : 1237);
-		result = prime * result + ((targetDate == null) ? 0 : targetDate.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Goal other = (Goal) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (isDone != other.isDone)
-			return false;
-		if (targetDate == null) {
-			if (other.targetDate != null)
-				return false;
-		} else if (!targetDate.equals(other.targetDate))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((description == null) ? 0 : description.hashCode());
+//		result = prime * result + ((id == null) ? 0 : id.hashCode());
+//		result = prime * result + (isDone ? 1231 : 1237);
+//		result = prime * result + ((targetDate == null) ? 0 : targetDate.hashCode());
+//		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Goal other = (Goal) obj;
+//		if (description == null) {
+//			if (other.description != null)
+//				return false;
+//		} else if (!description.equals(other.description))
+//			return false;
+//		if (id == null) {
+//			if (other.id != null)
+//				return false;
+//		} else if (!id.equals(other.id))
+//			return false;
+//		if (isDone != other.isDone)
+//			return false;
+//		if (targetDate == null) {
+//			if (other.targetDate != null)
+//				return false;
+//		} else if (!targetDate.equals(other.targetDate))
+//			return false;
+//		if (userId == null) {
+//			if (other.userId != null)
+//				return false;
+//		} else if (!userId.equals(other.userId))
+//			return false;
+//		return true;
+//	}
 
 }

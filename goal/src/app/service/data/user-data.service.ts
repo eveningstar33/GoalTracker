@@ -10,6 +10,6 @@ export class UserDataService {
   constructor(private http: HttpClient) { }
 
   addUser(user) {
-    return this.http.post(`${API_URL}/allusers`, user);
+    return this.http.post(`${API_URL}/register`, user);
   }
 }

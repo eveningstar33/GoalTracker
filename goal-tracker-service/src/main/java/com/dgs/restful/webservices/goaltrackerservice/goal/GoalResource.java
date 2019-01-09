@@ -38,34 +38,34 @@ public class GoalResource {
 	public ResponseEntity<Void> deleteGoal(
 			@PathVariable String username, @PathVariable long id) {
 		
-		Goal goal = goalService.deleteById(id);
-		if (goal != null) {
-			return ResponseEntity.noContent().build();
-		}
+//		Goal goal = goalService.deleteById(id);
+//		if (goal != null) {
+//			return ResponseEntity.noContent().build();
+//		}
 		
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping("/users/{username}/goals/{id}")
-	public ResponseEntity<Goal> updateGoal(
-			@PathVariable String username, @PathVariable long id, @RequestBody Goal goal) {
-		
-		// If you use @RequestBody you need to add a default constructor
-		Goal updatedGoal = goalService.save(goal);
-		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
-	}
+//	@PutMapping("/users/{username}/goals/{id}")
+//	public ResponseEntity<Goal> updateGoal(
+//			@PathVariable String username, @PathVariable long id, @RequestBody Goal goal) {
+//		
+//		// If you use @RequestBody you need to add a default constructor
+//		Goal updatedGoal = goalService.save(goal);
+//		return new ResponseEntity<Goal>(goal, HttpStatus.OK);
+//	}
 	
-	@PostMapping("/users/{username}/goals")
-	public ResponseEntity<Void> createGoal(@PathVariable String username, @RequestBody Goal goal) {
-		
-		Goal createdGoal = goalService.save(goal); 
-		
-		// We're taking the current request path and appending "/id"
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(createdGoal.getId()).toUri(); 
-		
-		// Return the location:
-		return ResponseEntity.created(uri).build();
-	}
+//	@PostMapping("/users/{username}/goals")
+//	public ResponseEntity<Void> createGoal(@PathVariable String username, @RequestBody Goal goal) {
+//		
+//		Goal createdGoal = goalService.save(goal); 
+//		
+//		// We're taking the current request path and appending "/id"
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+//			.path("/{id}").buildAndExpand(createdGoal.getId()).toUri(); 
+//		
+//		// Return the location:
+//		return ResponseEntity.created(uri).build();
+//	}
 	
 }

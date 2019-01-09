@@ -36,7 +36,7 @@ public class UserJPAResource {
 		return userJpaRepository.findAll();
 	}
 	
-	@PostMapping("/allusers")
+	@PostMapping("/register")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		user.setPassword(encoder.encode(user.getPassword())); 
 		User createdUser = new User();		

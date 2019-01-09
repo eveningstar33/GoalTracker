@@ -15,35 +15,35 @@ public class GoalHardCodedService {
 	private static long idCounter = 0;
 	
 	// Create a static initializer block:
-	static {
-		goals.add(new Goal(++idCounter, 5L, "Learn to Dance", new Date(), false));
-		goals.add(new Goal(++idCounter, 5L, "Learn French", new Date(), false));
-		goals.add(new Goal(++idCounter, 5L, "Learn to Play Piano", new Date(), false));
-	}
+//	static {
+//		goals.add(new Goal(++idCounter, 5L, "Learn to Dance", new Date(), false));
+//		goals.add(new Goal(++idCounter, 5L, "Learn French", new Date(), false));
+//		goals.add(new Goal(++idCounter, 5L, "Learn to Play Piano", new Date(), false));
+//	}
 	
 	public List<Goal> findAll() {
 		return goals;
 	}
 	
-	public Goal save(Goal goal) {
-		if (goal.getId() == -1 || goal.getId() == 0) {
-			goal.setId(++idCounter);
-			goals.add(goal); 
-		} else { 
-			deleteById(goal.getId());
-			goals.add(goal);
-		}
-		return goal;
-	}
+//	public Goal save(Goal goal) {
+//		if (goal.getId() == -1 || goal.getId() == 0) {
+//			goal.setId(++idCounter);
+//			goals.add(goal); 
+//		} else { 
+//			deleteById(goal.getId());
+//			goals.add(goal);
+//		}
+//		return goal;
+//	}
 	
-	public Goal deleteById(long id) {
-		Goal goal = findById(id);
-		if (goal == null) return null;
-		if (goals.remove(goal)) {    // remove() uses the equals() method, so we need to define it in the Goal class
-			return goal;
-		}
-		return null;
-	}
+//	public Goal deleteById(long id) {
+//		Goal goal = findById(id);
+//		if (goal == null) return null;
+//		if (goals.remove(goal)) {    // remove() uses the equals() method, so we need to define it in the Goal class
+//			return goal;
+//		}
+//		return null;
+//	}
 	
 	public Goal findById(long id) {
 		for (Goal goal : goals) {
